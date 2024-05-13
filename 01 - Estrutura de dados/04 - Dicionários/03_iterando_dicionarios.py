@@ -1,6 +1,7 @@
 '''
 Este código demonstra duas maneiras diferentes de iterar e exibir os dados armazenados no dicionário contatos.
 Parte 1: Iterando pelas chaves
+
 for chave in contatos:
     print(chave, contatos[chave])
 
