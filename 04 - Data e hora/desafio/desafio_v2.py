@@ -417,3 +417,133 @@ def main():
 
 
 main()
+
+
+# Explicação
+
+'''
+Este código implementa um sistema bancário simples em Python, permitindo aos usuários realizar operações como depósitos, saques, extratos e criação de contas e clientes. Vamos analisar o código passo a passo para entender sua estrutura e funcionalidades:
+
+**1. Importações:**
+
+* `textwrap`: Para formatar texto, facilitando a apresentação do menu.
+* `abc`: Para definir classes abstratas (`ABC`, `abstractclassmethod`, `abstractproperty`) e métodos abstratos.
+* `datetime`: Para trabalhar com datas e horas.
+
+**2. Classes:**
+
+* **`ContasIterador`:**
+    * Cria um iterador para iterar sobre uma lista de contas.
+    * O método `__next__` formata os dados da conta antes de retorná-la.
+
+* **`Cliente`:**
+    * Classe base para clientes.
+    * Atributos: `endereco`, `contas`, `indice_conta`.
+    * Métodos:
+        * `realizar_transacao`: Verifica se o cliente pode realizar a transação (limite de transações por dia) e a registra na conta.
+        * `adicionar_conta`: Adiciona uma nova conta ao cliente.
+
+* **`PessoaFisica`:**
+    * Subclasse de `Cliente` para clientes físicos.
+    * Atributos adicionais: `nome`, `data_nascimento`, `cpf`.
+
+* **`Conta`:**
+    * Classe base para contas bancárias.
+    * Atributos: `_saldo`, `_numero`, `_agencia`, `_cliente`, `_historico`.
+    * Métodos:
+        * `nova_conta`: Método de classe para criar uma nova conta.
+        * `saldo`: Propriedade para obter o saldo da conta.
+        * `numero`: Propriedade para obter o número da conta.
+        * `agencia`: Propriedade para obter o número da agência.
+        * `cliente`: Propriedade para obter o cliente da conta.
+        * `historico`: Propriedade para obter o histórico de transações da conta.
+        * `sacar`: Permite sacar dinheiro da conta, verificando se há saldo suficiente.
+        * `depositar`: Permite depositar dinheiro na conta.
+
+* **`ContaCorrente`:**
+    * Subclasse de `Conta` para contas correntes.
+    * Atributos adicionais: `_limite`, `_limite_saques`.
+    * Métodos:
+        * `nova_conta`: Método de classe para criar uma nova conta corrente.
+        * `sacar`: Permite sacar dinheiro da conta corrente, verificando o limite de saque e o número de saques.
+
+* **`Historico`:**
+    * Classe para gerenciar o histórico de transações de uma conta.
+    * Atributos: `_transacoes`.
+    * Métodos:
+        * `transacoes`: Propriedade para obter a lista de transações.
+        * `adicionar_transacao`: Adiciona uma nova transação ao histórico.
+        * `gerar_relatorio`: Gera um relatório de transações, permitindo filtrar por tipo de transação.
+        * `transacoes_do_dia`: Retorna as transações realizadas no dia atual.
+
+* **`Transacao`:**
+    * Classe abstrata para representar transações.
+    * Atributos: `valor`.
+    * Métodos:
+        * `registrar`: Método abstrato para registrar uma transação em uma conta.
+
+* **`Saque`:**
+    * Subclasse de `Transacao` para saques.
+    * Método `registrar`: Registra um saque na conta.
+
+* **`Deposito`:**
+    * Subclasse de `Transacao` para depósitos.
+    * Método `registrar`: Registra um depósito na conta.
+
+**3. Funções:**
+
+* **`log_transacao`:**
+    * Decorador que registra a data e hora de cada transação no console.
+
+* **`menu`:**
+    * Exibe o menu de opções para o usuário.
+
+* **`filtrar_cliente`:**
+    * Filtra a lista de clientes por CPF.
+
+* **`recuperar_conta_cliente`:**
+    * Recupera a primeira conta do cliente (FIXME: implementação simplificada, permitindo apenas uma conta por cliente).
+
+* **`depositar`:**
+    * Permite realizar um depósito na conta do cliente.
+
+* **`sacar`:**
+    * Permite realizar um saque na conta do cliente.
+
+* **`exibir_extrato`:**
+    * Exibe o extrato da conta do cliente.
+
+* **`criar_cliente`:**
+    * Cria um novo cliente.
+
+* **`criar_conta`:**
+    * Cria uma nova conta para o cliente.
+
+* **`listar_contas`:**
+    * Lista as contas existentes, formatando os dados de cada conta.
+
+* **`main`:**
+    * Função principal que controla o fluxo do programa, exibindo o menu e processando as opções do usuário.
+
+**4. Execução:**
+
+* A função `main` inicia o programa, criando as listas de clientes e contas, e entrando em um loop para processar as opções do usuário.
+
+**Observações:**
+
+* O código utiliza `textwrap.dedent` para formatar o menu e a saída de informações.
+* O código inclui comentários para explicar o funcionamento do código.
+* O código é modularizado em classes e funções, o que facilita a organização e a manutenção do código.
+* O código utiliza `@log_transacao` como um decorador para registrar as transações.
+* O código possui um `FIXME` que indica um ponto a ser revisado e melhorado, relacionado à escolha da conta do cliente.
+
+**Pontos a serem melhorados:**
+
+* Implementação da escolha da conta do cliente (o cliente deve poder escolher qual conta deseja utilizar, caso tenha mais de uma).
+* Inclusão de validações de entrada de dados (por exemplo, validação do formato do CPF e da data de nascimento).
+* Implementação de outras funcionalidades bancárias, como transferências e pagamentos.
+* Uso de banco de dados para persistir os dados do sistema bancário.
+
+Este código fornece uma base sólida para a construção de um sistema bancário mais completo e robusto. 
+
+'''
